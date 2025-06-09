@@ -16,9 +16,40 @@
 
 @layer base {
   body {
-    @apply bg-background text-text font-urbanist;
+    @apply bg-background text-text font-urbanist font-medium;
   }
   button {
     @apply cursor-pointer;
   }
+
+*::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+*::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: #FFFFFF;
+}
+
+*::-webkit-scrollbar-track:hover {
+  background-color: #FFFFFF;
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: #FFFFFF;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #E3E3E3;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #D7D7D7;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: #E3E3E3;
+}
+ 
 }
