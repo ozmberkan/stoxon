@@ -34,7 +34,7 @@ npm install
 npm run dev
 ```
 
-### 🧑‍💼 Özellikler
+### 🧑‍💼 Final Özellikleri
 
 ✅ Ürün ekleme, güncelleme, silme <br/>
 ✅ Tedarikçi yönetimi <br/>
