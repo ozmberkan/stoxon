@@ -1,4 +1,3 @@
-import React from "react";
 import Shape1 from "../assets/svg/shape1.svg";
 
 const Home = () => {

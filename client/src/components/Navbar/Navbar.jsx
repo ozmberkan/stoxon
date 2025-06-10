@@ -19,9 +19,9 @@ import {
   User2,
   Users,
 } from "lucide-react";
+import moment from "moment";
 import { Link } from "react-router-dom";
 import Logo from "../UI/Logo/Logo";
-import moment from "moment";
 
 const Navbar = () => {
   return (
@@ -53,7 +53,7 @@ const Navbar = () => {
               <PopoverPanel
                 anchor="bottom end"
                 transition
-                className="[--anchor-gap:4px] sm:[--anchor-gap:8px] flex flex-col outline-none border border-border transition duration-200 ease-out data-closed:scale-95 data-closed:opacity-0 bg-white shadow rounded-2xl p-2.5  w-64"
+                className="[--anchor-gap:4px] flex flex-col outline-none border border-border transition duration-200 ease-out data-closed:scale-95 data-closed:opacity-0 bg-white shadow rounded-2xl p-2.5  w-64"
               >
                 <h1 className="flex items-center gap-1 font-semibold text-sm">
                   <Bell size={14} />
@@ -87,7 +87,7 @@ const Navbar = () => {
                 modal={false}
                 anchor="bottom end"
                 transition
-                className="origin-top outline-none border border-border transition duration-200 ease-out data-closed:scale-95 data-closed:opacity-0 bg-white shadow rounded-2xl p-2 w-54"
+                className="[--anchor-gap:4px] outline-none border border-border transition duration-200 ease-out data-closed:scale-95 data-closed:opacity-0 bg-white shadow rounded-2xl p-2 w-54"
               >
                 <MenuItem>
                   <Link

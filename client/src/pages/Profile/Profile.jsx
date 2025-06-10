@@ -1,80 +1,75 @@
-import { AlertCircle } from "lucide-react";
-import Alert from "~/components/UI/Alert/Alert";
+import { Bell, Shield, Stars, User2 } from "lucide-react";
+import { useState } from "react";
+import InfoContent from "~/components/Profile/Tabs/InfoContent";
+import NotificationContent from "~/components/Profile/Tabs/NotificationContent";
+import ProContent from "~/components/Profile/Tabs/ProContent";
+import SecurityContent from "~/components/Profile/Tabs/SecurityContent";
 
 const Profile = () => {
+  const defaultTab = "info";
+  const [tab, setTab] = useState(defaultTab);
+
   return (
     <div className="min-h-svh flex container mx-auto py-12 ">
-      <div className="w-70 flex flex-col gap-1 mr-2 pr-5 border-r border-border">
+      <div className="w-64 flex flex-col gap-1 mr-2 pr-5 border-r border-border">
         <nav className="w-full ">
           <ul className="flex flex-col gap-1.5 w-full ">
-            <li className="mb-1 w-full hover:bg-neutral-100 px-2 py-1 rounded-xl">
-              <a href="#faq" className="text-text  w-full">
-                Kişisel Bilgilerim
-              </a>
-            </li>
-            <li className="mb-1 w-full hover:bg-neutral-100 px-2 py-1 rounded-xl">
-              <a href="#faq" className="text-text  w-full">
-                Abonelik Yönetimi
-              </a>
-            </li>
-            <li className="mb-1 w-full hover:bg-neutral-100 px-2 py-1 rounded-xl">
-              <a href="#faq" className="text-text  w-full">
-                Güvenlik Ayarlarım
-              </a>
-            </li>
-            <li className="mb-1 w-full hover:bg-neutral-100 px-2 py-1 rounded-xl">
-              <a href="#faq" className="text-text  w-full">
-                Bildirim Ayarlarım
-              </a>
-            </li>
+            {profileTabs.map((item) => (
+              <li
+                key={item.id}
+                className={`mb-1 w-full hover:bg-neutral-100 px-2 py-1 rounded ${
+                  tab === item.key ? "bg-neutral-50" : ""
+                }`}
+              >
+                <button
+                  onClick={() => setTab(item.key)}
+                  className="text-neutral-500 hover:text-text transition-all duration-200 text-sm font-semibold w-full flex items-center gap-2"
+                >
+                  <item.icon size={18} />
+                  {item.name}
+                </button>
+              </li>
+            ))}
           </ul>
         </nav>
       </div>
-      <div className="pl-2 flex flex-col gap-2 w-full">
-        <h1 className="font-semibold text-xl">Kişisel Bilgilerim</h1>
-        <div>
-          Hoş geldin, <span className="font-bold">Berkan Özmen</span>
-        </div>
-        <Alert
-          Icon={AlertCircle}
-          head={"Dikkat"}
-          content={
-            "Kişisel bilgilerinizi güncellemeden önce lütfen mevcut bilgilerinizi yedekleyin. Değişiklikler geri alınamaz."
-          }
-        />
-        <hr className="my-2 text-neutral-200" />
-        <form className="grid grid-cols-3 gap-3">
-          <div className="flex flex-col ">
-            <label className="text-xs font-semibold">İsim Soyisim</label>
-            <input
-              className="px-2 py-1 rounded-xl border border-border focus:outline-none transition-all duration-200 text-sm"
-              value={"Berkan Özmen"}
-            />
-          </div>
-          <div className="flex flex-col ">
-            <label className="text-xs font-semibold">E-Posta</label>
-            <input
-              className="px-2 py-1 rounded-xl border border-border focus:outline-none transition-all duration-200 text-sm"
-              value={"ozmberkan@gmail.com"}
-            />
-          </div>
-          <div className="flex flex-col ">
-            <label className="text-xs font-semibold">Telefon Numarası</label>
-            <input
-              className="px-2 py-1 rounded-xl border border-border focus:outline-none transition-all duration-200 text-sm"
-              value={"555 123 4567"}
-            />
-          </div>
-
-          <div className="col-span-3">
-            <button className="bg-primary text-sm px-2 py-1 rounded-xl text-white">
-              Kaydet
-            </button>
-          </div>
-        </form>
-      </div>
+      {tab === "info" && <InfoContent />}
+      {tab === "pro" && <ProContent />}
+      {tab === "security" && <SecurityContent />}
+      {tab === "notification" && <NotificationContent />}
     </div>
   );
 };
 
 export default Profile;
+
+export const profileTabs = [
+  {
+    id: 1,
+    name: "Kişisel Bilgilerim",
+    key: "info",
+    component: InfoContent,
+    icon: User2,
+  },
+  {
+    id: 2,
+    name: "Abonelik Yönetimi",
+    key: "pro",
+    component: ProContent,
+    icon: Stars,
+  },
+  {
+    id: 3,
+    name: "Güvenlik Ayarlarım",
+    key: "security",
+    component: SecurityContent,
+    icon: Shield,
+  },
+  {
+    id: 4,
+    name: "Bildirim Ayarlarım",
+    key: "notification",
+    component: NotificationContent,
+    icon: Bell,
+  },
+];
