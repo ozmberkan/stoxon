@@ -33,3 +33,19 @@ npm install
 ```bash
 npm run dev
 ```
+
+### 🧑‍💼 Özellikler
+
+✅ Ürün ekleme, güncelleme, silme
+✅ Tedarikçi yönetimi
+✅ Stok giriş-çıkış takibi
+✅ Düşük stok uyarıları
+✅ Kullanıcı kayıt/giriş sistemi (JWT ile)
+✅ Rol bazlı erişim kontrolü (Admin/Kullanıcı)
+✅ Mobil uyumlu kullanıcı arayüzü
+✅ Gerçek zamanlı veriler için React Query entegrasyonu
+
+
+### 🛠️ Geliştirme Aşamasında
+Henüz geliştirilme aşamasında olan bir projedir. Gün gün güncellemeler ile geliştirilmeye devam edilmektedir.
+
