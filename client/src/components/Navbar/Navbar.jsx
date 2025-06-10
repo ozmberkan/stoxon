@@ -51,21 +51,13 @@ const Navbar = () => {
               <MenuItem>
                 <Link
                   className="flex items-center gap-1.5 font-semibold text-neutral-500 transition-all duration-200 hover:text-text data-focus:bg-neutral-100 text-sm p-2 rounded-lg"
-                  to="/profile"
+                  to="/profilim"
                 >
                   <User2 size={17} />
                   Profilim
                 </Link>
               </MenuItem>
-              <MenuItem>
-                <Link
-                  className="flex items-center gap-1.5 font-semibold text-neutral-500 transition-all duration-200 hover:text-text data-focus:bg-neutral-100 text-sm p-2 rounded-lg"
-                  to="/profile"
-                >
-                  <Settings size={17} />
-                  Ayarlar
-                </Link>
-              </MenuItem>
+
               <hr className="my-2 text-neutral-100" />
               <MenuItem>
                 <Link
@@ -136,7 +128,7 @@ const Navbar = () => {
               <MenuItem>
                 <Link
                   className="flex items-center gap-1.5 font-semibold text-neutral-500 transition-all duration-200 hover:text-text data-focus:bg-neutral-100 text-sm p-2 rounded-lg"
-                  to="/profile"
+                  to="/yardim-destek"
                 >
                   <HelpCircle size={17} />
                   Yardım ve Destek
