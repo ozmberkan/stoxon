@@ -1,21 +1,17 @@
-import React from "react";
-import Logo from "../UI/Logo/Logo";
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import {
   Archive,
   HelpCircle,
   LogOut,
   Menu as MenuIcon,
   NotebookText,
-  Settings,
   Stars,
-  Store,
   SwatchBook,
-  User,
   User2,
   Users,
 } from "lucide-react";
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { Link } from "react-router-dom";
+import Logo from "../UI/Logo/Logo";
 
 const Navbar = () => {
   return (
@@ -59,57 +55,26 @@ const Navbar = () => {
               </MenuItem>
 
               <hr className="my-2 text-neutral-100" />
-              <MenuItem>
-                <Link
-                  className="flex items-center gap-1.5 font-semibold text-neutral-500 transition-all duration-200 hover:text-text data-focus:bg-neutral-100 text-sm p-2 rounded-lg"
-                  to="/profile"
-                >
-                  <Archive size={17} />
-                  Panel
-                </Link>
-              </MenuItem>
-              <MenuItem>
-                <Link className="flex items-center justify-between gap-1.5 font-medium text-neutral-300 transition-all duration-200  hover:cursor-not-allowed text-sm p-2 rounded-lg">
-                  <div className="flex items-center gap-1.5">
-                    {" "}
-                    <NotebookText size={17} />
-                    Raporlar
-                  </div>
-                  <span>
-                    <span className="bg-violet-500/10 text-nowrap font-bold px-2 py-0.5 rounded-full border text-violet-500 border-violet-500/25 flex justify-center items-center text-[10px]">
-                      PRO
-                    </span>
-                  </span>
-                </Link>
-              </MenuItem>
-              <MenuItem>
-                <Link className="flex items-center justify-between gap-1.5 font-medium text-neutral-300 transition-all duration-200  hover:cursor-not-allowed text-sm p-2 rounded-lg">
-                  <div className="flex items-center gap-1.5">
-                    {" "}
-                    <SwatchBook size={17} />
-                    Kategoriler
-                  </div>
-                  <span>
-                    <span className="bg-violet-500/10 text-nowrap font-bold px-2 py-0.5 rounded-full border text-violet-500 border-violet-500/25 flex justify-center items-center text-[10px]">
-                      PRO
-                    </span>
-                  </span>
-                </Link>
-              </MenuItem>
-              <MenuItem>
-                <Link className="flex items-center justify-between gap-1.5 font-medium text-neutral-300 transition-all duration-200  hover:cursor-not-allowed text-sm p-2 rounded-lg">
-                  <div className="flex items-center gap-1.5">
-                    {" "}
-                    <Users size={17} />
-                    Kullanıcılar
-                  </div>
-                  <span>
-                    <span className="bg-violet-500/10 text-nowrap font-bold px-2 py-0.5 rounded-full border text-violet-500 border-violet-500/25 flex justify-center items-center text-[10px]">
-                      PRO
-                    </span>
-                  </span>
-                </Link>
-              </MenuItem>
+              {navLinks.map((link) => (
+                <MenuItem>
+                  <Link
+                    className="flex items-center justify-between gap-1.5 font-semibold text-neutral-500 transition-all duration-200 hover:text-text data-focus:bg-neutral-100 text-sm p-2 rounded-lg"
+                    to={link.path}
+                  >
+                    <div className="flex items-center gap-1.5">
+                      <link.icon size={17} />
+                      {link.name}
+                    </div>
+                    {link.badge && (
+                      <div>
+                        <span className="bg-primary/10 font-bold px-2 py-0.5 rounded-full border text-primary border-primary/25 flex justify-center items-center text-[10px]">
+                          {link.badgeText}
+                        </span>
+                      </div>
+                    )}
+                  </Link>
+                </MenuItem>
+              ))}
               <hr className="my-2 text-neutral-100" />
               <MenuItem>
                 <Link className="flex items-center justify-between gap-1.5 font-semibold text-neutral-500 transition-all duration-200  hover:cursor-not-allowed text-sm p-2 rounded-lg">
@@ -118,11 +83,11 @@ const Navbar = () => {
                     <Stars size={17} />
                     Pro Plan
                   </div>
-                  <span>
+                  <div>
                     <span className="bg-neutral-500/10 font-bold px-2 py-0.5 rounded-full border text-neutral-500 border-neutral-500/25 flex justify-center items-center text-[10px]">
                       YAKINDA
                     </span>
-                  </span>
+                  </div>
                 </Link>
               </MenuItem>
               <MenuItem>
@@ -154,3 +119,31 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+export const navLinks = [
+  { id: 1, name: "Panel", path: "/profile", icon: Archive, badge: false },
+  {
+    id: 2,
+    name: "Raporlar",
+    path: "/profile",
+    icon: NotebookText,
+    badge: true,
+    badgeText: "PRO",
+  },
+  {
+    id: 3,
+    name: "Kategoriler",
+    path: "/profile",
+    icon: SwatchBook,
+    badge: true,
+    badgeText: "PRO",
+  },
+  {
+    id: 4,
+    name: "Kullanıcılar",
+    path: "/profile",
+    icon: Users,
+    badge: true,
+    badgeText: "PRO",
+  },
+];
