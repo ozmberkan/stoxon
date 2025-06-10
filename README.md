@@ -36,14 +36,14 @@ npm run dev
 
 ### 🧑‍💼 Özellikler
 
-✅ Ürün ekleme, güncelleme, silme
-✅ Tedarikçi yönetimi
-✅ Stok giriş-çıkış takibi
-✅ Düşük stok uyarıları
-✅ Kullanıcı kayıt/giriş sistemi (JWT ile)
-✅ Rol bazlı erişim kontrolü (Admin/Kullanıcı)
-✅ Mobil uyumlu kullanıcı arayüzü
-✅ Gerçek zamanlı veriler için React Query entegrasyonu
+✅ Ürün ekleme, güncelleme, silme <br/>
+✅ Tedarikçi yönetimi <br/>
+✅ Stok giriş-çıkış takibi <br/>
+✅ Düşük stok uyarıları <br/>
+✅ Kullanıcı kayıt/giriş sistemi (JWT ile) <br/>
+✅ Rol bazlı erişim kontrolü (Admin/Kullanıcı) <br/>
+✅ Mobil uyumlu kullanıcı arayüzü <br/>
+✅ Gerçek zamanlı veriler için React Query entegrasyonu <br/>
 
 
 ### 🛠️ Geliştirme Aşamasında
