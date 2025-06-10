@@ -17,24 +17,30 @@ const InfoContent = () => {
       />
       <hr className="my-2 text-neutral-200" />
       <form className="grid grid-cols-3 gap-3">
-        <div className="flex flex-col ">
-          <label className="text-xs font-semibold">İsim Soyisim</label>
+        <div className="flex flex-col relative">
+          <label className="text-xs font-semibold text-neutral-500 absolute -top-2 left-2 bg-background px-1">
+            İsim Soyisim
+          </label>
           <input
-            className="px-2 py-1 rounded-xl border border-border focus:outline-none transition-all duration-200 text-sm"
+            className="py-2 px-3 rounded-lg border border-border focus:outline-none transition-all duration-200 text-sm"
             value={"Berkan Özmen"}
           />
         </div>
-        <div className="flex flex-col ">
-          <label className="text-xs font-semibold">E-Posta</label>
+        <div className="flex flex-col relative">
+          <label className="text-xs font-semibold text-neutral-500 absolute -top-2 left-2 bg-background px-1">
+            E-Posta
+          </label>
           <input
-            className="px-2 py-1 rounded-xl border border-border focus:outline-none transition-all duration-200 text-sm"
+            className="py-2 px-3 rounded-lg border border-border focus:outline-none transition-all duration-200 text-sm"
             value={"ozmberkan@gmail.com"}
           />
         </div>
-        <div className="flex flex-col ">
-          <label className="text-xs font-semibold">Telefon Numarası</label>
+        <div className="flex flex-col relative ">
+          <label className="text-xs font-semibold text-neutral-500 absolute -top-2 left-2 bg-background px-1">
+            Telefon Numarası
+          </label>
           <input
-            className="px-2 py-1 rounded-xl border border-border focus:outline-none transition-all duration-200 text-sm"
+            className="py-2 px-3 rounded-lg border border-border focus:outline-none transition-all duration-200 text-sm"
             value={"555 123 4567"}
           />
         </div>

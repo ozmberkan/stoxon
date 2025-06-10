@@ -3,7 +3,7 @@ import React from "react";
 
 const Help = () => {
   return (
-    <div className="min-h-svh flex container mx-auto py-12 ">
+    <div className="min-h-svh flex container mx-auto py-6 ">
       <div className="w-70 flex flex-col gap-1 mr-2 pr-5 border-r border-border">
         <form className="flex flex-row  items-center gap-1">
           <input
@@ -16,22 +16,22 @@ const Help = () => {
         </form>
         <nav className="mt-5 w-full ">
           <ul className="flex flex-col gap-1.5 w-full ">
-            <li className="mb-1 w-full hover:bg-neutral-100 px-2 py-1 rounded-xl">
+            <li className="mb-1 w-full hover:bg-neutral-100 p-2 rounded-lg">
               <a href="#faq" className="text-text  w-full">
                 Sıkça Sorulan Sorular
               </a>
             </li>
-            <li className="mb-1 w-full hover:bg-neutral-100 px-2 py-1 rounded-xl">
+            <li className="mb-1 w-full hover:bg-neutral-100 p-2 rounded-lg">
               <a href="#faq" className="text-text  w-full">
                 İletişim
               </a>
             </li>
-            <li className="mb-1 w-full hover:bg-neutral-100 px-2 py-1 rounded-xl">
+            <li className="mb-1 w-full hover:bg-neutral-100 p-2 rounded-lg">
               <a href="#faq" className="text-text  w-full">
                 Kullanım Kılavuzları
               </a>
             </li>
-            <li className="mb-1 w-full hover:bg-neutral-100 px-2 py-1 rounded-xl">
+            <li className="mb-1 w-full hover:bg-neutral-100 p-2 rounded-lg">
               <a href="#faq" className="text-text  w-full">
                 Geri Bildirim
               </a>

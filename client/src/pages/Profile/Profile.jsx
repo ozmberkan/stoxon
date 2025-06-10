@@ -10,7 +10,7 @@ const Profile = () => {
   const [tab, setTab] = useState(defaultTab);
 
   return (
-    <div className="min-h-svh flex container mx-auto py-12 ">
+    <div className="min-h-svh flex container mx-auto py-6 ">
       <div className="w-64 flex flex-col gap-1 mr-2 pr-5 border-r border-border">
         <nav className="w-full ">
           <ul className="flex flex-col gap-1.5 w-full ">
