@@ -3,9 +3,9 @@ import Shape1 from "../assets/svg/shape1.svg";
 
 const Home = () => {
   return (
-    <div className="flex flex-col justify-start items-center p-12 min-h-svh relative">
-      <img src={Shape1} className="absolute top-32 left-24" />
-      <img src={Shape1} className="absolute top-32 right-24" />
+    <div className="flex flex-col justify-start items-center py-12 my-12 min-h-svh container mx-auto">
+      <img src={Shape1} className="absolute top-48 rotate-32 left-24" />
+      <img src={Shape1} className="absolute top-48 rotate-32 right-24" />
       <div className="flex flex-col items-center justify-center mt-8  leading-32">
         <h1 className="text-[100px] font-black tracking-tighter">
           Stok Takip Mi<span className="animate-pulse">?</span>
