@@ -19,7 +19,7 @@ Bu proje aşağıdaki modern teknolojiler kullanılarak geliştirilmiştir:
 ### 1. Depoyu klonlayın
 
 ```bash
-git clone https://github.com/kullaniciadi/stoxon.git
+git clone https://github.com/ozmberkan/stoxon.git
 cd client
 ```
 
