@@ -5,10 +5,10 @@ const Alert = ({ head, content, headColor, textColor, Icon }) => {
     <div className="w-full border border-border rounded-lg p-2 bg-neutral-100">
       <div
         className={`${
-          headColor ? headColor : ""
+          headColor ? headColor : "text-text"
         } flex items-center gap-1  rounded-lg `}
       >
-        {Icon && <Icon size={15} className="text-text" />}
+        {Icon && <Icon size={15} />}
         {head || "Dikkat!"}
       </div>
       <p

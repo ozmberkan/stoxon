@@ -44,120 +44,134 @@ const Navbar = () => {
         <div className="container mx-auto flex items-center justify-between h-full">
           <div className="flex justify-between w-full  h-full items-center">
             <Logo />
-          </div>
-          <div className="flex items-center gap-2">
-            <Popover className="relative">
-              <PopoverButton className="hover:bg-neutral-200/75 p-2 rounded-full transition-all duration-300 outline-none">
-                <Bell size={20} />
-              </PopoverButton>
-              <PopoverPanel
-                anchor="bottom end"
-                transition
-                className="[--anchor-gap:4px] flex flex-col outline-none border border-border transition duration-200 ease-out data-closed:scale-95 data-closed:opacity-0 bg-white shadow rounded-2xl p-2.5  w-64"
+            <div className="flex items-center gap-3">
+              <Link
+                to="/hakkimizda"
+                className="font-semibold text-sm hover:text-neutral-600"
               >
-                <h1 className="flex items-center gap-1 font-semibold text-sm">
-                  <Bell size={14} />
-                  Bildirimler
-                </h1>
-                <hr className="my-2 text-neutral-100" />
-                <div className="flex flex-col gap-1.5">
-                  <div className="flex flex-col text-xs border-l-2 border-l-primary pl-2">
-                    <p className=" ">Yeni bir versiyon yayınlandı! </p>
-                    <span className="text-neutral-400">
-                      {moment().format("DD.MM.YYYY HH:mm")}
-                    </span>
-                  </div>
-                  <div className="flex flex-col text-xs border-l-2 border-l-secondary pl-2">
-                    <p className="line-clamp-2">
-                      Düzenli olarak sürüm yükseltmesi yapılmaktadır.{" "}
-                    </p>
-                    <span className="text-neutral-400">
-                      {moment().add(-1, "days").format("DD.MM.YYYY HH:mm")}
-                    </span>
-                  </div>
-                </div>
-              </PopoverPanel>
-            </Popover>
-
-            <Menu>
-              <MenuButton className="hover:bg-neutral-200/75 p-2 rounded-full transition-all duration-300 outline-none">
-                <MenuIcon size={20} />
-              </MenuButton>
-              <MenuItems
-                modal={false}
-                anchor="bottom end"
-                transition
-                className="[--anchor-gap:4px] outline-none border border-border transition duration-200 ease-out data-closed:scale-95 data-closed:opacity-0 bg-white shadow rounded-2xl p-2 w-54"
+                Hakkımızda
+              </Link>
+              <Link
+                to="/iletisim"
+                className="font-semibold text-sm hover:text-neutral-600"
               >
-                <MenuItem>
-                  <Link
-                    className="flex items-center gap-1.5 font-semibold text-neutral-500 transition-all duration-200 hover:text-text data-focus:bg-neutral-100 text-sm p-2 rounded-lg"
-                    to="/profilim"
-                  >
-                    <User2 size={17} />
-                    Profilim
-                  </Link>
-                </MenuItem>
-
-                <hr className="my-2 text-neutral-100" />
-                {navLinks.map((link) => (
-                  <MenuItem>
-                    <Link
-                      className="flex items-center justify-between gap-1.5 font-semibold text-neutral-500 transition-all duration-200 hover:text-text data-focus:bg-neutral-100 text-sm p-2 rounded-lg"
-                      to={link.path}
-                    >
-                      <div className="flex items-center gap-1.5">
-                        <link.icon size={17} />
-                        {link.name}
-                      </div>
-                      {link.badge && (
-                        <div>
-                          <span className="bg-primary/10 font-bold px-2 py-0.5 rounded-full border text-primary border-primary/25 flex justify-center items-center text-[10px]">
-                            {link.badgeText}
-                          </span>
-                        </div>
-                      )}
-                    </Link>
-                  </MenuItem>
-                ))}
-                <hr className="my-2 text-neutral-100" />
-                <MenuItem>
-                  <Link className="flex items-center justify-between gap-1.5 font-semibold text-neutral-500 transition-all duration-200  hover:cursor-not-allowed text-sm p-2 rounded-lg">
-                    <div className="flex items-center gap-1.5">
-                      {" "}
-                      <Stars size={17} />
-                      Pro Plan
-                    </div>
-                    <div>
-                      <span className="bg-neutral-500/10 font-bold px-2 py-0.5 rounded-full border text-neutral-500 border-neutral-500/25 flex justify-center items-center text-[10px]">
-                        YAKINDA
+                İletişim
+              </Link>
+            </div>
+            <div className="flex items-center gap-2">
+              <Popover className="relative">
+                <PopoverButton className="hover:bg-neutral-200/75 p-2 rounded-full transition-all duration-300 outline-none">
+                  <Bell size={20} />
+                </PopoverButton>
+                <PopoverPanel
+                  anchor="bottom end"
+                  transition
+                  className="[--anchor-gap:4px] flex flex-col outline-none border border-border transition duration-200 ease-out data-closed:scale-95 data-closed:opacity-0 bg-white shadow rounded-2xl p-2.5  w-64"
+                >
+                  <h1 className="flex items-center gap-1 font-semibold text-sm">
+                    <Bell size={14} />
+                    Bildirimler
+                  </h1>
+                  <hr className="my-2 text-neutral-100" />
+                  <div className="flex flex-col gap-1.5">
+                    <div className="flex flex-col text-xs border-l-2 border-l-primary pl-2">
+                      <p className=" ">Yeni bir versiyon yayınlandı! </p>
+                      <span className="text-neutral-400">
+                        {moment().format("DD.MM.YYYY HH:mm")}
                       </span>
                     </div>
-                  </Link>
-                </MenuItem>
-                <MenuItem>
-                  <Link
-                    className="flex items-center gap-1.5 font-semibold text-neutral-500 transition-all duration-200 hover:text-text data-focus:bg-neutral-100 text-sm p-2 rounded-lg"
-                    to="/yardim-destek"
-                  >
-                    <HelpCircle size={17} />
-                    Yardım ve Destek
-                  </Link>
-                </MenuItem>
+                    <div className="flex flex-col text-xs border-l-2 border-l-secondary pl-2">
+                      <p className="line-clamp-2">
+                        Düzenli olarak sürüm yükseltmesi yapılmaktadır.{" "}
+                      </p>
+                      <span className="text-neutral-400">
+                        {moment().add(-1, "days").format("DD.MM.YYYY HH:mm")}
+                      </span>
+                    </div>
+                  </div>
+                </PopoverPanel>
+              </Popover>
 
-                <hr className="my-2 text-neutral-100" />
-                <MenuItem>
-                  <Link
-                    className="flex items-center gap-1.5 font-semibold text-neutral-500 transition-all duration-200 hover:text-red-500 data-focus:bg-red-100 text-sm p-2 rounded-lg"
-                    to="/profile"
-                  >
-                    <LogOut size={17} />
-                    Çıkış Yap
-                  </Link>
-                </MenuItem>
-              </MenuItems>
-            </Menu>
-          </div>
+              <Menu>
+                <MenuButton className="hover:bg-neutral-200/75 p-2 rounded-full transition-all duration-300 outline-none">
+                  <MenuIcon size={20} />
+                </MenuButton>
+                <MenuItems
+                  modal={false}
+                  anchor="bottom end"
+                  transition
+                  className="[--anchor-gap:4px] outline-none border border-border transition duration-200 ease-out data-closed:scale-95 data-closed:opacity-0 bg-white shadow rounded-2xl p-2 w-54"
+                >
+                  <MenuItem>
+                    <Link
+                      className="flex items-center gap-1.5 font-semibold text-neutral-500 transition-all duration-200 hover:text-text data-focus:bg-neutral-100 text-sm p-2 rounded-lg"
+                      to="/profilim"
+                    >
+                      <User2 size={17} />
+                      Profilim
+                    </Link>
+                  </MenuItem>
+
+                  <hr className="my-2 text-neutral-100" />
+                  {navLinks.map((link) => (
+                    <MenuItem>
+                      <Link
+                        className="flex items-center justify-between gap-1.5 font-semibold text-neutral-500 transition-all duration-200 hover:text-text data-focus:bg-neutral-100 text-sm p-2 rounded-lg"
+                        to={link.path}
+                      >
+                        <div className="flex items-center gap-1.5">
+                          <link.icon size={17} />
+                          {link.name}
+                        </div>
+                        {link.badge && (
+                          <div>
+                            <span className="bg-primary/10 font-bold px-2 py-0.5 rounded-full border text-primary border-primary/25 flex justify-center items-center text-[10px]">
+                              {link.badgeText}
+                            </span>
+                          </div>
+                        )}
+                      </Link>
+                    </MenuItem>
+                  ))}
+                  <hr className="my-2 text-neutral-100" />
+                  <MenuItem>
+                    <Link className="flex items-center justify-between gap-1.5 font-semibold text-neutral-500 transition-all duration-200  hover:cursor-not-allowed text-sm p-2 rounded-lg">
+                      <div className="flex items-center gap-1.5">
+                        {" "}
+                        <Stars size={17} />
+                        Pro Plan
+                      </div>
+                      <div>
+                        <span className="bg-neutral-500/10 font-bold px-2 py-0.5 rounded-full border text-neutral-500 border-neutral-500/25 flex justify-center items-center text-[10px]">
+                          YAKINDA
+                        </span>
+                      </div>
+                    </Link>
+                  </MenuItem>
+                  <MenuItem>
+                    <Link
+                      className="flex items-center gap-1.5 font-semibold text-neutral-500 transition-all duration-200 hover:text-text data-focus:bg-neutral-100 text-sm p-2 rounded-lg"
+                      to="/yardim-destek"
+                    >
+                      <HelpCircle size={17} />
+                      Yardım ve Destek
+                    </Link>
+                  </MenuItem>
+
+                  <hr className="my-2 text-neutral-100" />
+                  <MenuItem>
+                    <Link
+                      className="flex items-center gap-1.5 font-semibold text-neutral-500 transition-all duration-200 hover:text-red-500 data-focus:bg-red-100 text-sm p-2 rounded-lg"
+                      to="/profile"
+                    >
+                      <LogOut size={17} />
+                      Çıkış Yap
+                    </Link>
+                  </MenuItem>
+                </MenuItems>
+              </Menu>
+            </div>
+          </div>{" "}
         </div>
       </div>
     </div>

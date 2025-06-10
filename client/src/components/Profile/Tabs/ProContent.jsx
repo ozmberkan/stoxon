@@ -8,6 +8,7 @@ const ProContent = () => {
       <Alert
         Icon={Stars}
         head={"Merhaba"}
+        headColor={"text-secondary"}
         content={
           "Pro aboneliğiniz aktif değil, Abonelik satın alarak tüm özelliklerimize erişebilirsiniz."
         }
