@@ -15,6 +15,12 @@ const Home = () => {
           Çok kolay!{" "}
         </span>
       </div>
+      <p className="max-w-xl text-center text-neutral-400 mt-4 mb-8">
+        Küçük işletmeler için modern, bulut tabanlı stok ve tedarik yönetimi
+        platformu. Ürünlerinizi kolayca yönetin, tedarik zincirinizi optimize
+        edin ve işinizi büyütün. Hızlı, güvenilir ve kullanıcı dostu arayüzü ile
+        stok takibi artık çok daha basit!
+      </p>
 
       <button
         className="px-4 py-1.5 text-sm font-bold rounded-full bg-neutral-100 border border-border

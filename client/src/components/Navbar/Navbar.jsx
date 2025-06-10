@@ -23,7 +23,7 @@ const Navbar = () => {
       <div className="w-full py-2 ">
         <div className="container mx-auto flex items-center justify-between h-full">
           <div className="w-full flex justify-between items-center">
-            <p className="font-semibold text-sm">
+            <p className="font-medium text-neutral-400 text-xs">
               Küçük işletmeler için modern, bulut tabanlı stok ve tedarik
               yönetimi platformu
             </p>
