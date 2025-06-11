@@ -3,8 +3,13 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "~/components/UI/Button";
 import Seperator from "~/components/UI/Seperator";
+import { login } from "~/services/authService";
+import { useAuthStore } from "~/store/useAuthStore";
+import { toast } from "sonner";
 
 const Login = () => {
+  const setUser = useAuthStore((state) => state.setUser);
+
   const defaultFormValues = {
     email: "",
     password: "",
@@ -21,7 +26,19 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(values);
+    login(values)
+      .then((res) => {
+        if (res.data.success) {
+          setUser(res.data.data);
+          toast.success("Giriş Başarılı");
+          setTimeout(() => {
+            window.location.href = "/";
+          }, 1500);
+        }
+      })
+      .catch((errorResponse) => {
+        toast.error(errorResponse.response.data.message || "Giriş başarısız");
+      });
   };
 
   return (

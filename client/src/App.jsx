@@ -15,12 +15,16 @@ import Reports from "./pages/Pro/Reports/Reports";
 import Users from "./pages/Pro/Users/Users";
 import Profile from "./pages/Profile/Profile";
 import { useAuthStore } from "./store/useAuthStore";
+import { Toaster } from "sonner";
+import { useEffect } from "react";
 
 const App = () => {
   const userClaims = useAuthStore((state) => state.userClaims);
+  const user = useAuthStore((state) => state.user);
 
   return (
     <BrowserRouter>
+      <Toaster />
       <Routes>
         {/* Footer & Navbar */}
         <Route element={<Layout />}>
