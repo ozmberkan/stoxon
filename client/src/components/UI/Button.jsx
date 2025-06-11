@@ -9,6 +9,7 @@ const Button = ({
   color,
   type,
   children,
+  className,
   noShadow = false,
 }) => {
   return (
@@ -16,6 +17,7 @@ const Button = ({
       onClick={onClick}
       type={type ?? "button"}
       className={`
+        ${className ?? ""}
         ${border ? `border ${borderColor}` : ""}
         rounded-md
         font-semibold
