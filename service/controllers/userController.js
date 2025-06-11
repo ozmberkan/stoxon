@@ -3,6 +3,7 @@ import {
   getUserByIdService,
   updateUserService,
   deleteUserService,
+  getMyInfoService,
 } from "../services/userService.js";
 
 export const getAllUsersController = async (req, res) => {
@@ -48,6 +49,16 @@ export const deleteUserController = async (req, res) => {
       message: "Kullanıcı başarıyla silindi.",
       data: deletedUser,
     });
+  } catch (error) {
+    res.status(404).json({ message: error.message, success: false });
+  }
+};
+
+export const getMyInfoController = async (req, res) => {
+  const email = req.user.email;
+  try {
+    const user = await getMyInfoService(email);
+    res.status(200).json({ success: true, message: "", data: user });
   } catch (error) {
     res.status(404).json({ message: error.message, success: false });
   }

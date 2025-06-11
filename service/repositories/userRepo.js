@@ -55,3 +55,17 @@ export const deleteUser = async (id) => {
     },
   });
 };
+
+export const getMyInfo = async (email) => {
+  return await prisma.user.findUnique({
+    where: { email },
+    select: {
+      id: true,
+      email: true,
+      phone: true,
+      fullName: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  });
+};

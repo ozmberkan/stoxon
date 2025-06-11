@@ -3,6 +3,7 @@ import {
   getUserById,
   deleteUser,
   updateUser,
+  getMyInfo,
 } from "../repositories/userRepo.js";
 
 export const getAllUsersService = async () => {
@@ -46,5 +47,17 @@ export const deleteUserService = async (id) => {
     return deletedUser;
   } catch (error) {
     throw new Error(`Error deleting user: ${error.message}`);
+  }
+};
+
+export const getMyInfoService = async (email) => {
+  try {
+    const user = await getMyInfo(email);
+    if (!user) {
+      throw new Error(`User with email ${email} not found`);
+    }
+    return user;
+  } catch (error) {
+    throw new Error(`Error fetching user info: ${error.message}`);
   }
 };
