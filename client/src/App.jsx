@@ -22,6 +22,8 @@ const App = () => {
   const userClaims = useAuthStore((state) => state.userClaims);
   const user = useAuthStore((state) => state.user);
 
+  useEffect(() => {}, []);
+
   return (
     <BrowserRouter>
       <Toaster />

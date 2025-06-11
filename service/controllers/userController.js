@@ -55,7 +55,7 @@ export const deleteUserController = async (req, res) => {
 };
 
 export const getMyInfoController = async (req, res) => {
-  const email = req.user.email;
+  const { email } = req.user;
   try {
     const user = await getMyInfoService(email);
     res.status(200).json({ success: true, message: "", data: user });
