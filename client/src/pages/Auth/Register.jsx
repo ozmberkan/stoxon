@@ -1,12 +1,15 @@
 import { Lock, Mail, Phone, User2 } from "lucide-react";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import Button from "~/components/UI/Button";
 import Seperator from "~/components/UI/Seperator";
 import { register } from "~/services/authService";
+import { useAuthStore } from "~/store/useAuthStore";
 
 const Register = () => {
+  const setUser = useAuthStore((state) => state.setUser);
+
   const defaultFormValues = {
     fullName: "",
     email: "",
@@ -28,8 +31,11 @@ const Register = () => {
     register(values)
       .then((res) => {
         if (res.data.success) {
-          setUser(res.data.data);
           toast.success("Kayıt Başarılı");
+          setUser(res.data.data);
+          setTimeout(() => {
+            window.location.href = "/";
+          }, 1500);
         }
       })
       .catch((errorResponse) => {

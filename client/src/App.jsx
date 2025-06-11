@@ -19,6 +19,7 @@ import { Toaster } from "sonner";
 import { useEffect, useState } from "react";
 import { getMyInfo } from "./services/userService";
 import { getClaimsByUser } from "./services/claimService";
+import { Loader } from "lucide-react";
 
 const App = () => {
   const userClaims = useAuthStore((state) => state.userClaims);
@@ -52,7 +53,7 @@ const App = () => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        Yükleniyor...
+        <Loader className="animate-spin " />
       </div>
     );
   }
