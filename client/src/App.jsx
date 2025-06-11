@@ -17,12 +17,26 @@ import Profile from "./pages/Profile/Profile";
 import { useAuthStore } from "./store/useAuthStore";
 import { Toaster } from "sonner";
 import { useEffect } from "react";
+import { getMyInfo } from "./services/userService";
 
 const App = () => {
   const userClaims = useAuthStore((state) => state.userClaims);
   const user = useAuthStore((state) => state.user);
+  const setUser = useAuthStore((state) => state.setUser);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (!user) {
+      getMyInfo()
+        .then((response) => {
+          if (response.data.success) {
+            setUser(response.data.user);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching user info:", error);
+        });
+    }
+  }, [user]);
 
   return (
     <BrowserRouter>
