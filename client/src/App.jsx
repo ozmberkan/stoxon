@@ -1,16 +1,22 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import AdminLayout from "./layouts/AdminLayout";
 import Layout from "./layouts/Layout";
+import About from "./pages/About/About";
 import Dashboard from "./pages/Admin/Dashboard";
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
+import Contact from "./pages/Contact/Contact";
 import Help from "./pages/Help/Help";
 import Home from "./pages/Home";
 import NotAccess from "./pages/NotAccess/NotAccess";
+import Panel from "./pages/Panel/Panel";
+import Categories from "./pages/Pro/Categories/Categories";
+import Reports from "./pages/Pro/Reports/Reports";
+import Users from "./pages/Pro/Users/Users";
 import Profile from "./pages/Profile/Profile";
 
 const App = () => {
-  const userClaims = ["customer"];
+  const userClaims = ["dashboard", "user", ""];
 
   return (
     <BrowserRouter>
@@ -19,7 +25,8 @@ const App = () => {
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/yardim-destek" element={<Help />} />
-          <Route path="/profilim" element={<Profile />} />
+          <Route path="/hakkimizda" element={<About />} />
+          <Route path="/iletisim" element={<Contact />} />
         </Route>
         {/* Auth */}
         <Route path="/kayit-ol" element={<Register />} />
@@ -31,6 +38,44 @@ const App = () => {
           </Route>
         ) : (
           <Route path="/yonetim" element={<Navigate to="/401" replace />} />
+        )}
+
+        {userClaims.includes("pro") ? (
+          <Route element={<AdminLayout />}>
+            <Route path="/kullanicilar" element={<Users />} />
+            <Route path="/kategoriler" element={<Categories />} />
+            <Route path="/raporlar" element={<Reports />} />
+          </Route>
+        ) : (
+          <>
+            <Route
+              path="/kullanicilar"
+              element={<Navigate to="/401" replace />}
+            />
+            <Route
+              path="/kategoriler"
+              element={<Navigate to="/401" replace />}
+            />
+            <Route path="/raporlar" element={<Navigate to="/401" replace />} />
+          </>
+        )}
+
+        {/* Panel */}
+        {userClaims.includes("panel") ? (
+          <Route element={<AdminLayout />}>
+            <Route path="/panel" element={<Panel />} />
+          </Route>
+        ) : (
+          <Route path="/panel" element={<Navigate to="/401" replace />} />
+        )}
+
+        {/* Profile */}
+        {userClaims.includes("user") ? (
+          <Route element={<Layout />}>
+            <Route path="/profilim" element={<Profile />} />
+          </Route>
+        ) : (
+          <Route path="/profilim" element={<Navigate to="/401" replace />} />
         )}
         {/* 401 */}
         <Route path="/401" element={<NotAccess />} />

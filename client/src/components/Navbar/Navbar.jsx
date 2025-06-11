@@ -192,11 +192,11 @@ const Navbar = () => {
 export default Navbar;
 
 export const navLinks = [
-  { id: 1, name: "Panel", path: "/profile", icon: Archive, badge: false },
+  { id: 1, name: "Panel", path: "/panel", icon: Archive, badge: false },
   {
     id: 2,
     name: "Raporlar",
-    path: "/profile",
+    path: "/raporlar",
     icon: NotebookText,
     badge: true,
     badgeText: "PRO",
@@ -204,7 +204,7 @@ export const navLinks = [
   {
     id: 3,
     name: "Kategoriler",
-    path: "/profile",
+    path: "/kategoriler",
     icon: SwatchBook,
     badge: true,
     badgeText: "PRO",
@@ -212,7 +212,7 @@ export const navLinks = [
   {
     id: 4,
     name: "Kullanıcılar",
-    path: "/profile",
+    path: "/kullanicilar",
     icon: Users,
     badge: true,
     badgeText: "PRO",
