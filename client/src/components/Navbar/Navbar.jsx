@@ -24,8 +24,11 @@ import moment from "moment";
 import { Link } from "react-router-dom";
 import Logo from "../UI/Logo/Logo";
 import Seperator from "../UI/Seperator";
+import { useAuthStore } from "~/store/useAuthStore";
 
 const Navbar = () => {
+  const userClaims = useAuthStore((state) => state.userClaims);
+
   return (
     <div className="flex flex-col w-full ">
       <div className="w-full py-2 ">
@@ -104,47 +107,92 @@ const Navbar = () => {
                   transition
                   className="[--anchor-gap:4px] outline-none border border-border transition duration-200 ease-out data-closed:scale-95 data-closed:opacity-0 bg-white shadow rounded-2xl p-2 w-54"
                 >
-                  <MenuItem>
-                    <Link
-                      className="flex items-center gap-1.5 font-semibold text-neutral-500 transition-all duration-200 hover:text-text data-focus:bg-neutral-100 text-sm p-2 rounded-lg"
-                      to="/profilim"
-                    >
-                      <User2 size={17} />
-                      Profilim
-                    </Link>
-                  </MenuItem>
-                  <Seperator />
-                  <MenuItem>
-                    <Link
-                      className="flex items-center gap-1.5 font-semibold text-neutral-500 transition-all duration-200 hover:text-text data-focus:bg-neutral-100 text-sm p-2 rounded-lg"
-                      to="/yonetim"
-                    >
-                      <Lock size={17} />
-                      Admin Panel
-                    </Link>
-                  </MenuItem>
-                  <Seperator />
-                  {navLinks.map((link) => (
+                  {userClaims.includes("user") ? (
                     <MenuItem>
                       <Link
-                        className="flex items-center justify-between gap-1.5 font-semibold text-neutral-500 transition-all duration-200 hover:text-text data-focus:bg-neutral-100 text-sm p-2 rounded-lg"
-                        to={link.path}
+                        className="flex items-center gap-1.5 font-semibold text-neutral-500 transition-all duration-200 hover:text-text data-focus:bg-neutral-100 text-sm p-2 rounded-lg"
+                        to="/profilim"
                       >
-                        <div className="flex items-center gap-1.5">
-                          <link.icon size={17} />
-                          {link.name}
-                        </div>
-                        {link.badge && (
-                          <div>
-                            <span className="bg-primary/10 font-bold px-2 py-0.5 rounded-full border text-primary border-primary/25 flex justify-center items-center text-[10px]">
-                              {link.badgeText}
-                            </span>
-                          </div>
-                        )}
+                        <User2 size={17} />
+                        Profilim
                       </Link>
                     </MenuItem>
-                  ))}
-                  <Seperator />
+                  ) : (
+                    <>
+                      {authLinks.map((link) => (
+                        <MenuItem key={link.id}>
+                          <Link
+                            className="flex items-center gap-1.5 font-semibold text-neutral-500 transition-all duration-200 hover:text-text data-focus:bg-neutral-100 text-sm p-2 rounded-lg"
+                            to={link.path}
+                          >
+                            <link.icon size={17} />
+                            {link.name}
+                          </Link>
+                        </MenuItem>
+                      ))}
+                      <Seperator />
+                    </>
+                  )}
+                  {userClaims.includes("dashboard") &&
+                  userClaims.includes("user") ? (
+                    <>
+                      <Seperator />
+                      <MenuItem>
+                        <Link
+                          className="flex items-center gap-1.5 font-semibold text-neutral-500 transition-all duration-200 hover:text-text data-focus:bg-neutral-100 text-sm p-2 rounded-lg"
+                          to="/yonetim"
+                        >
+                          <Lock size={17} />
+                          Admin Panel
+                        </Link>
+                      </MenuItem>
+                    </>
+                  ) : null}
+
+                  {userClaims.includes("panel") &&
+                  userClaims.includes("user") ? (
+                    <>
+                      <Seperator />
+                      <MenuItem>
+                        <Link
+                          className="flex items-center gap-1.5 font-semibold text-neutral-500 transition-all duration-200 hover:text-text data-focus:bg-neutral-100 text-sm p-2 rounded-lg"
+                          to="/panel"
+                        >
+                          <Archive size={17} />
+                          Panel
+                        </Link>
+                      </MenuItem>
+                      <Seperator />
+                    </>
+                  ) : null}
+
+                  {userClaims.includes("pro") &&
+                  userClaims.includes("user") &&
+                  userClaims.includes("panel") ? (
+                    <>
+                      {navLinks.map((link) => (
+                        <MenuItem>
+                          <Link
+                            className="flex items-center justify-between gap-1.5 font-semibold text-neutral-500 transition-all duration-200 hover:text-text data-focus:bg-neutral-100 text-sm p-2 rounded-lg"
+                            to={link.path}
+                          >
+                            <div className="flex items-center gap-1.5">
+                              <link.icon size={17} />
+                              {link.name}
+                            </div>
+                            {link.badge && (
+                              <div>
+                                <span className="bg-primary/10 font-bold px-2 py-0.5 rounded-full border text-primary border-primary/25 flex justify-center items-center text-[10px]">
+                                  {link.badgeText}
+                                </span>
+                              </div>
+                            )}
+                          </Link>
+                        </MenuItem>
+                      ))}
+                      <Seperator />{" "}
+                    </>
+                  ) : null}
                   <MenuItem>
                     <Link className="flex items-center justify-between gap-1.5 font-semibold text-neutral-500 transition-all duration-200  hover:cursor-not-allowed text-sm p-2 rounded-lg">
                       <div className="flex items-center gap-1.5">
@@ -169,16 +217,20 @@ const Navbar = () => {
                     </Link>
                   </MenuItem>
 
-                  <Seperator />
-                  <MenuItem>
-                    <Link
-                      className="flex items-center gap-1.5 font-semibold text-neutral-500 transition-all duration-200 hover:text-red-500 data-focus:bg-red-100 text-sm p-2 rounded-lg"
-                      to="/profile"
-                    >
-                      <LogOut size={17} />
-                      Çıkış Yap
-                    </Link>
-                  </MenuItem>
+                  {userClaims.includes("user") ? (
+                    <>
+                      <Seperator />
+                      <MenuItem>
+                        <Link
+                          className="flex items-center gap-1.5 font-semibold text-neutral-500 transition-all duration-200 hover:text-red-500 data-focus:bg-red-100 text-sm p-2 rounded-lg"
+                          to="/profile"
+                        >
+                          <LogOut size={17} />
+                          Çıkış Yap
+                        </Link>
+                      </MenuItem>{" "}
+                    </>
+                  ) : null}
                 </MenuItems>
               </Menu>
             </div>
@@ -192,7 +244,6 @@ const Navbar = () => {
 export default Navbar;
 
 export const navLinks = [
-  { id: 1, name: "Panel", path: "/panel", icon: Archive, badge: false },
   {
     id: 2,
     name: "Raporlar",
@@ -217,4 +268,9 @@ export const navLinks = [
     badge: true,
     badgeText: "PRO",
   },
+];
+
+export const authLinks = [
+  { id: 1, name: "Giriş Yap", path: "/giris-yap", icon: Lock, badge: false },
+  { id: 2, name: "Kayıt Ol", path: "/kayit-ol", icon: User2, badge: false },
 ];

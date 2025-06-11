@@ -14,9 +14,10 @@ import Categories from "./pages/Pro/Categories/Categories";
 import Reports from "./pages/Pro/Reports/Reports";
 import Users from "./pages/Pro/Users/Users";
 import Profile from "./pages/Profile/Profile";
+import { useAuthStore } from "./store/useAuthStore";
 
 const App = () => {
-  const userClaims = ["dashboard", "user", "pro", "panel"];
+  const userClaims = useAuthStore((state) => state.userClaims);
 
   return (
     <BrowserRouter>
@@ -83,6 +84,9 @@ const App = () => {
 
         {/* 401 */}
         <Route path="/401" element={<NotAccess />} />
+
+        {/* Redirect to Home if no route matches */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );
