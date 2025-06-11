@@ -1,14 +1,25 @@
 import React from "react";
 
-const Button = ({ size, onClick, bg, color, type, children }) => {
+const Button = ({
+  size,
+  onClick,
+  border = false,
+  borderColor,
+  bg,
+  color,
+  type,
+  children,
+  noShadow = false,
+}) => {
   return (
     <button
       onClick={onClick}
       type={type ?? "button"}
       className={`
+        ${border ? `border ${borderColor}` : ""}
         rounded-md
         font-semibold
-        hover:shadow-md
+        ${noShadow ? "" : "hover:shadow-md"}
         transition-all duration-200
         ${bg ? bg : "bg-primary"} ${color ? color : "text-white"}
         ${

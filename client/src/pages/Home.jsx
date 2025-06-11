@@ -1,4 +1,6 @@
+import Button from "~/components/UI/Button";
 import Shape1 from "../assets/svg/shape1.svg";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -21,12 +23,17 @@ const Home = () => {
         stok takibi artık çok daha basit!
       </p>
 
-      <button
-        className="px-4 py-1.5 text-sm font-bold rounded-full bg-neutral-100 border border-border
-      "
-      >
-        Hemen Başla
-      </button>
+      <Link to="/kayit-ol">
+        <Button
+          bg={"bg-neutral-100"}
+          border
+          borderColor={"border-border"}
+          color="text-black"
+          size={"sm"}
+        >
+          Hemen Başla
+        </Button>
+      </Link>
     </div>
   );
 };
