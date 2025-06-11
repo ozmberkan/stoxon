@@ -1,4 +1,7 @@
+import { Loader } from "lucide-react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { Toaster } from "sonner";
 import AdminLayout from "./layouts/AdminLayout";
 import Layout from "./layouts/Layout";
 import About from "./pages/About/About";
@@ -14,12 +17,11 @@ import Categories from "./pages/Pro/Categories/Categories";
 import Reports from "./pages/Pro/Reports/Reports";
 import Users from "./pages/Pro/Users/Users";
 import Profile from "./pages/Profile/Profile";
-import { useAuthStore } from "./store/useAuthStore";
-import { Toaster } from "sonner";
-import { useEffect, useState } from "react";
-import { getMyInfo } from "./services/userService";
 import { getClaimsByUser } from "./services/claimService";
-import { Loader } from "lucide-react";
+import { getMyInfo } from "./services/userService";
+import { useAuthStore } from "./store/useAuthStore";
+import AuthGuard from "./components/Protected/AuthGuard";
+import Verify from "./pages/Auth/Verify";
 
 const App = () => {
   const userClaims = useAuthStore((state) => state.userClaims);
@@ -61,6 +63,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Toaster />
+      <AuthGuard />
       <Routes>
         {/* Footer & Navbar */}
         <Route element={<Layout />}>
@@ -71,14 +74,9 @@ const App = () => {
         </Route>
 
         {/* Auth */}
-        <Route
-          path="/kayit-ol"
-          element={user ? <Navigate to="/" /> : <Register />}
-        />
-        <Route
-          path="/giris-yap"
-          element={user ? <Navigate to="/" /> : <Login />}
-        />
+        <Route path="/kayit-ol" element={<Register />} />
+        <Route path="/giris-yap" element={<Login />} />
+        <Route path="/dogrulama" element={<Verify />} />
 
         {!isLoading && (
           <>

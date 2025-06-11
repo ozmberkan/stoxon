@@ -1,5 +1,7 @@
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
+import speakeasy from "speakeasy";
+import { prisma } from "../prisma/prisma.js";
 import { loginService, registerService } from "../services/authService.js";
 import { assignClaimToUser } from "../services/claimsService.js";
 
@@ -97,9 +99,48 @@ export const registerController = async (req, res) => {
 
 export const logoutController = async (req, res) => {
   try {
+    await prisma.user.update({
+      where: { id: req.user.id },
+      data: { is2FAVerified: false },
+    });
     res.clearCookie("token");
     res.status(200).json({ message: "Çıkış Başarılı", success: true });
   } catch (error) {
     res.status(500).json({ message: error.message, success: false });
   }
+};
+
+export const setup2FA = async (req, res) => {
+  const user = await prisma.user.findUnique({
+    where: { id: req.user.id },
+  });
+
+  // ✅ Zaten secret varsa — tekrar oluşturma
+  if (user.authSecret) {
+    const otpauth_url = speakeasy.otpauthURL({
+      secret: user.authSecret,
+      label: `Stoxon (${user.email})`,
+      encoding: "base32",
+    });
+
+    return res.json({
+      base32: user.authSecret,
+      otpauth_url,
+    });
+  }
+
+  // ❗ Secret daha önce oluşturulmamışsa → ilk kez oluştur
+  const secret = speakeasy.generateSecret({
+    name: `Stoxon (${user.email})`,
+  });
+
+  await prisma.user.update({
+    where: { id: user.id },
+    data: { authSecret: secret.base32 },
+  });
+
+  res.json({
+    base32: secret.base32,
+    otpauth_url: secret.otpauth_url,
+  });
 };

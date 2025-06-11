@@ -9,6 +9,8 @@ export const getAllUsers = async () => {
       fullName: true,
       createdAt: true,
       updatedAt: true,
+      authenticator: true,
+      notification: true,
     },
   });
 };
@@ -23,6 +25,8 @@ export const getUserById = async (id) => {
       fullName: true,
       createdAt: true,
       updatedAt: true,
+      authenticator: true,
+      notification: true,
     },
   });
 };
@@ -38,6 +42,8 @@ export const updateUser = async (id, data) => {
       fullName: true,
       createdAt: true,
       updatedAt: true,
+      authenticator: true,
+      notification: true,
     },
   });
 };
@@ -52,6 +58,8 @@ export const deleteUser = async (id) => {
       fullName: true,
       createdAt: true,
       updatedAt: true,
+      authenticator: true,
+      notification: true,
     },
   });
 };
@@ -66,6 +74,9 @@ export const getMyInfo = async (email) => {
       fullName: true,
       createdAt: true,
       updatedAt: true,
+      authenticator: true,
+      notification: true,
+      is2FAVerified: true,
     },
   });
 };

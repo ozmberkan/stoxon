@@ -14,14 +14,18 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  phone     String
-  fullName  String
-  password  String
-  createdAt DateTime @default(now()) @db.Timestamptz(3)
-  updatedAt DateTime @updatedAt @db.Timestamptz(3)
-  claims    Claim[]
+  id            Int      @id @default(autoincrement())
+  email         String   @unique
+  phone         String
+  fullName      String
+  password      String
+  authenticator Boolean  @default(false)
+  notification  Boolean  @default(false)
+  authSecret    String?
+  is2FAVerified Boolean  @default(false)
+  createdAt     DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt     DateTime @updatedAt @db.Timestamptz(3)
+  claims        Claim[]
 }
 
 model Claim {
