@@ -11,6 +11,7 @@ import {
   Archive,
   Bell,
   HelpCircle,
+  Lock,
   LogOut,
   Menu as MenuIcon,
   NotebookText,
@@ -22,6 +23,7 @@ import {
 import moment from "moment";
 import { Link } from "react-router-dom";
 import Logo from "../UI/Logo/Logo";
+import Seperator from "../UI/Seperator";
 
 const Navbar = () => {
   return (
@@ -111,8 +113,17 @@ const Navbar = () => {
                       Profilim
                     </Link>
                   </MenuItem>
-
-                  <hr className="my-2 text-neutral-100" />
+                  <Seperator />
+                  <MenuItem>
+                    <Link
+                      className="flex items-center gap-1.5 font-semibold text-neutral-500 transition-all duration-200 hover:text-text data-focus:bg-neutral-100 text-sm p-2 rounded-lg"
+                      to="/yonetim"
+                    >
+                      <Lock size={17} />
+                      Admin Panel
+                    </Link>
+                  </MenuItem>
+                  <Seperator />
                   {navLinks.map((link) => (
                     <MenuItem>
                       <Link
@@ -133,7 +144,7 @@ const Navbar = () => {
                       </Link>
                     </MenuItem>
                   ))}
-                  <hr className="my-2 text-neutral-100" />
+                  <Seperator />
                   <MenuItem>
                     <Link className="flex items-center justify-between gap-1.5 font-semibold text-neutral-500 transition-all duration-200  hover:cursor-not-allowed text-sm p-2 rounded-lg">
                       <div className="flex items-center gap-1.5">
@@ -158,7 +169,7 @@ const Navbar = () => {
                     </Link>
                   </MenuItem>
 
-                  <hr className="my-2 text-neutral-100" />
+                  <Seperator />
                   <MenuItem>
                     <Link
                       className="flex items-center gap-1.5 font-semibold text-neutral-500 transition-all duration-200 hover:text-red-500 data-focus:bg-red-100 text-sm p-2 rounded-lg"

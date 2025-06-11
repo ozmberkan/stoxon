@@ -1,5 +1,6 @@
 import { AlertCircle } from "lucide-react";
 import Alert from "~/components/UI/Alert/Alert";
+import Button from "~/components/UI/Button";
 
 const InfoContent = () => {
   return (
@@ -46,9 +47,9 @@ const InfoContent = () => {
         </div>
 
         <div className="col-span-3">
-          <button className="bg-primary text-sm px-2 py-1 rounded-xl text-white">
+          <Button size={"sm"} color={"text-white"} bg={"bg-primary"}>
             Kaydet
-          </button>
+          </Button>
         </div>
       </form>
     </div>

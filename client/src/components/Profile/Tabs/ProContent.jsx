@@ -1,5 +1,7 @@
 import { Stars } from "lucide-react";
 import Alert from "~/components/UI/Alert/Alert";
+import Button from "~/components/UI/Button";
+import Seperator from "~/components/UI/Seperator";
 
 const ProContent = () => {
   return (
@@ -13,7 +15,12 @@ const ProContent = () => {
           "Pro aboneliğiniz aktif değil, Abonelik satın alarak tüm özelliklerimize erişebilirsiniz."
         }
       />
-      <hr className="my-2 text-neutral-200" />
+      <Seperator />
+      <div>
+        <Button size={"sm"} color={"text-white"} bg={"bg-secondary"}>
+          Pro'yu Dene
+        </Button>
+      </div>
     </div>
   );
 };
