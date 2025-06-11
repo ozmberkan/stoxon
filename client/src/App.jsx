@@ -16,7 +16,7 @@ import Users from "./pages/Pro/Users/Users";
 import Profile from "./pages/Profile/Profile";
 
 const App = () => {
-  const userClaims = ["dashboard", "user", ""];
+  const userClaims = ["dashboard", "user", "pro", "panel"];
 
   return (
     <BrowserRouter>
@@ -28,18 +28,21 @@ const App = () => {
           <Route path="/hakkimizda" element={<About />} />
           <Route path="/iletisim" element={<Contact />} />
         </Route>
+
         {/* Auth */}
         <Route path="/kayit-ol" element={<Register />} />
         <Route path="/giris-yap" element={<Login />} />
-        {/* Admin Panel */}
-        {userClaims.includes("dashboard") ? (
-          <Route element={<AdminLayout />}>
-            <Route path="/yonetim" element={<Dashboard />} />
+
+        {/* Profile */}
+        {userClaims.includes("user") ? (
+          <Route element={<Layout />}>
+            <Route path="/profilim" element={<Profile />} />
           </Route>
         ) : (
-          <Route path="/yonetim" element={<Navigate to="/401" replace />} />
+          <Route path="/profilim" element={<Navigate to="/401" replace />} />
         )}
 
+        {/* Pro Kullanıcılar */}
         {userClaims.includes("pro") ? (
           <Route element={<AdminLayout />}>
             <Route path="/kullanicilar" element={<Users />} />
@@ -69,14 +72,15 @@ const App = () => {
           <Route path="/panel" element={<Navigate to="/401" replace />} />
         )}
 
-        {/* Profile */}
-        {userClaims.includes("user") ? (
-          <Route element={<Layout />}>
-            <Route path="/profilim" element={<Profile />} />
+        {/* Admin Panel */}
+        {userClaims.includes("dashboard") ? (
+          <Route element={<AdminLayout />}>
+            <Route path="/yonetim" element={<Dashboard />} />
           </Route>
         ) : (
-          <Route path="/profilim" element={<Navigate to="/401" replace />} />
+          <Route path="/yonetim" element={<Navigate to="/401" replace />} />
         )}
+
         {/* 401 */}
         <Route path="/401" element={<NotAccess />} />
       </Routes>
