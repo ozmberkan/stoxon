@@ -1,8 +1,10 @@
 import { Lock, Mail, Phone, User2 } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "sonner";
 import Button from "~/components/UI/Button";
 import Seperator from "~/components/UI/Seperator";
+import { register } from "~/services/authService";
 
 const Register = () => {
   const defaultFormValues = {
@@ -23,7 +25,16 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(values);
+    register(values)
+      .then((res) => {
+        if (res.data.success) {
+          setUser(res.data.data);
+          toast.success("Kayıt Başarılı");
+        }
+      })
+      .catch((errorResponse) => {
+        toast.error(errorResponse.response.data.message || "Kayıt başarısız");
+      });
   };
 
   return (

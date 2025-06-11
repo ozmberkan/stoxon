@@ -16,27 +16,46 @@ import Users from "./pages/Pro/Users/Users";
 import Profile from "./pages/Profile/Profile";
 import { useAuthStore } from "./store/useAuthStore";
 import { Toaster } from "sonner";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getMyInfo } from "./services/userService";
+import { getClaimsByUser } from "./services/claimService";
 
 const App = () => {
   const userClaims = useAuthStore((state) => state.userClaims);
   const user = useAuthStore((state) => state.user);
   const setUser = useAuthStore((state) => state.setUser);
+  const setUserClaims = useAuthStore((state) => state.setUserClaims);
+
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (!user) {
-      getMyInfo()
-        .then((response) => {
-          if (response.data.success) {
-            setUser(response.data.user);
-          }
-        })
-        .catch((error) => {
-          console.error("Error fetching user info:", error);
-        });
-    }
-  }, [user]);
+    const fetchUserAndClaims = async () => {
+      try {
+        const userResponse = await getMyInfo();
+        if (userResponse.data.success) {
+          const userData = userResponse.data.data;
+          setUser(userData);
+
+          const claimsResponse = await getClaimsByUser(userData.id);
+          setUserClaims(claimsResponse.data.data);
+        }
+      } catch (error) {
+        console.error("Auth loading error:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchUserAndClaims();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        Yükleniyor...
+      </div>
+    );
+  }
 
   return (
     <BrowserRouter>
@@ -54,52 +73,62 @@ const App = () => {
         <Route path="/kayit-ol" element={<Register />} />
         <Route path="/giris-yap" element={<Login />} />
 
-        {/* Profile */}
-        {userClaims.includes("user") ? (
-          <Route element={<Layout />}>
-            <Route path="/profilim" element={<Profile />} />
-          </Route>
-        ) : (
-          <Route path="/profilim" element={<Navigate to="/401" replace />} />
-        )}
-
-        {/* Pro Kullanıcılar */}
-        {userClaims.includes("pro") ? (
-          <Route element={<AdminLayout />}>
-            <Route path="/kullanicilar" element={<Users />} />
-            <Route path="/kategoriler" element={<Categories />} />
-            <Route path="/raporlar" element={<Reports />} />
-          </Route>
-        ) : (
+        {!isLoading && (
           <>
-            <Route
-              path="/kullanicilar"
-              element={<Navigate to="/401" replace />}
-            />
-            <Route
-              path="/kategoriler"
-              element={<Navigate to="/401" replace />}
-            />
-            <Route path="/raporlar" element={<Navigate to="/401" replace />} />
+            {/* Profile */}
+            {userClaims.includes("user") ? (
+              <Route element={<Layout />}>
+                <Route path="/profilim" element={<Profile />} />
+              </Route>
+            ) : (
+              <Route
+                path="/profilim"
+                element={<Navigate to="/401" replace />}
+              />
+            )}
+
+            {/* Pro Kullanıcılar */}
+            {userClaims.includes("pro") ? (
+              <Route element={<AdminLayout />}>
+                <Route path="/kullanicilar" element={<Users />} />
+                <Route path="/kategoriler" element={<Categories />} />
+                <Route path="/raporlar" element={<Reports />} />
+              </Route>
+            ) : (
+              <>
+                <Route
+                  path="/kullanicilar"
+                  element={<Navigate to="/401" replace />}
+                />
+                <Route
+                  path="/kategoriler"
+                  element={<Navigate to="/401" replace />}
+                />
+                <Route
+                  path="/raporlar"
+                  element={<Navigate to="/401" replace />}
+                />
+              </>
+            )}
+
+            {/* Panel */}
+            {userClaims.includes("panel") ? (
+              <Route element={<AdminLayout />}>
+                <Route path="/panel" element={<Panel />} />
+              </Route>
+            ) : (
+              <Route path="/panel" element={<Navigate to="/401" replace />} />
+            )}
+
+            {/* Admin Panel */}
+            {userClaims.includes("dashboard") ? (
+              <Route element={<AdminLayout />}>
+                <Route path="/yonetim" element={<Dashboard />} />
+              </Route>
+            ) : (
+              <Route path="/yonetim" element={<Navigate to="/401" replace />} />
+            )}
           </>
-        )}
-
-        {/* Panel */}
-        {userClaims.includes("panel") ? (
-          <Route element={<AdminLayout />}>
-            <Route path="/panel" element={<Panel />} />
-          </Route>
-        ) : (
-          <Route path="/panel" element={<Navigate to="/401" replace />} />
-        )}
-
-        {/* Admin Panel */}
-        {userClaims.includes("dashboard") ? (
-          <Route element={<AdminLayout />}>
-            <Route path="/yonetim" element={<Dashboard />} />
-          </Route>
-        ) : (
-          <Route path="/yonetim" element={<Navigate to="/401" replace />} />
         )}
 
         {/* 401 */}

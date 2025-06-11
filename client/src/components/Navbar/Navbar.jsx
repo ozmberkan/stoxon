@@ -25,6 +25,8 @@ import { Link } from "react-router-dom";
 import Logo from "../UI/Logo/Logo";
 import Seperator from "../UI/Seperator";
 import { useAuthStore } from "~/store/useAuthStore";
+import { logout } from "~/services/authService";
+import { toast } from "sonner";
 
 const Navbar = () => {
   const userClaims = useAuthStore((state) => state.userClaims);
@@ -221,13 +223,21 @@ const Navbar = () => {
                     <>
                       <Seperator />
                       <MenuItem>
-                        <Link
-                          className="flex items-center gap-1.5 font-semibold text-neutral-500 transition-all duration-200 hover:text-red-500 data-focus:bg-red-100 text-sm p-2 rounded-lg"
+                        <button
+                          onClick={() => {
+                            logout().then((res) => {
+                              if (res.data.success) {
+                                toast.success("Çıkış başarılı");
+                                window.location.reload();
+                              }
+                            });
+                          }}
+                          className="flex w-full items-center gap-1.5 font-semibold text-neutral-500 transition-all duration-200 hover:text-red-500 data-focus:bg-red-100 text-sm p-2 rounded-lg"
                           to="/profile"
                         >
                           <LogOut size={17} />
                           Çıkış Yap
-                        </Link>
+                        </button>
                       </MenuItem>{" "}
                     </>
                   ) : null}

@@ -1,6 +1,7 @@
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { loginService, registerService } from "../services/authService.js";
+import { assignClaimToUser } from "../services/claimsService.js";
 
 export const loginController = async (req, res) => {
   try {
@@ -58,6 +59,9 @@ export const registerController = async (req, res) => {
       email,
       password: hashedPassword,
     });
+
+    await assignClaimToUser(user.id, "user");
+    await assignClaimToUser(user.id, "panel");
 
     const token = jwt.sign(
       { id: user.id, email: user.email },
