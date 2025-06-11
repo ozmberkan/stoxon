@@ -77,6 +77,7 @@ export const getMyInfo = async (email) => {
       authenticator: true,
       notification: true,
       is2FAVerified: true,
+      QrCode: true,
     },
   });
 };

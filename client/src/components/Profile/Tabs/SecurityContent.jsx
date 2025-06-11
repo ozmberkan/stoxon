@@ -1,19 +1,26 @@
 import { Switch } from "@headlessui/react";
 import { Shield } from "lucide-react";
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 import Alert from "~/components/UI/Alert/Alert";
 import Seperator from "~/components/UI/Seperator";
 import { update } from "~/services/userService";
 import { useAuthStore } from "~/store/useAuthStore";
 
 const SecurityContent = () => {
-  const [enabled, setEnabled] = useState(false);
   const user = useAuthStore((state) => state.user);
 
-  const handleToggle = async () => {
-    const newValue = !enabled;
-    setEnabled(newValue);
-    await update(user.id, { authenticator: newValue });
+  const [isOpen, setIsOpen] = useState(user?.authenticator || false);
+
+  const toggleHandle = () => {
+    setIsOpen(!isOpen);
+    update(user.id, { authenticator: !isOpen })
+      .then((res) => {
+        toast.success("Güvenlik ayarlarınız güncellendi.");
+      })
+      .catch((err) => {
+        toast.error("Güvenlik ayarlarınız güncellenemedi.");
+      });
   };
 
   return (
@@ -29,8 +36,8 @@ const SecurityContent = () => {
       <Seperator />
       <div className="flex items-center gap-1">
         <Switch
-          checked={enabled || user.authenticator}
-          onChange={handleToggle}
+          checked={isOpen}
+          onChange={toggleHandle}
           className="group inline-flex h-6 w-11 items-center rounded-full bg-gray-200 transition data-checked:bg-primary"
         >
           <span className="size-4 translate-x-1 rounded-full bg-white transition group-data-checked:translate-x-6" />

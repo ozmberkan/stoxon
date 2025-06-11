@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "User" ADD COLUMN     "QrCode" BOOLEAN NOT NULL DEFAULT false;

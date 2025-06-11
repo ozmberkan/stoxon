@@ -22,6 +22,7 @@ import { getMyInfo } from "./services/userService";
 import { useAuthStore } from "./store/useAuthStore";
 import AuthGuard from "./components/Protected/AuthGuard";
 import Verify from "./pages/Auth/Verify";
+import Setup2FA from "./pages/Auth/Setup2FA";
 
 const App = () => {
   const userClaims = useAuthStore((state) => state.userClaims);
@@ -77,6 +78,7 @@ const App = () => {
         <Route path="/kayit-ol" element={<Register />} />
         <Route path="/giris-yap" element={<Login />} />
         <Route path="/dogrulama" element={<Verify />} />
+        <Route path="/qr-olustur" element={<Setup2FA />} />
 
         {!isLoading && (
           <>

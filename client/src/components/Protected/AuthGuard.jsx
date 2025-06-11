@@ -7,10 +7,12 @@ const AuthGuard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user?.authenticator && !user?.is2FAVerified) {
+    if (user?.authenticator && !user?.is2FAVerified && user?.QrCode) {
       navigate("/dogrulama");
+    } else if (!user?.QrCode && user?.authenticator) {
+      navigate("/qr-olustur");
     } else {
-      navigate("/");
+      navigate("/profilim");
     }
   }, [user]);
 
