@@ -1,6 +1,6 @@
 import { Lock, Mail } from "lucide-react";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "~/components/UI/Button";
 import Seperator from "~/components/UI/Seperator";
 import { login } from "~/services/authService";
@@ -8,6 +8,7 @@ import { useAuthStore } from "~/store/useAuthStore";
 import { toast } from "sonner";
 
 const Login = () => {
+  const navigate = useNavigate();
   const setUser = useAuthStore((state) => state.setUser);
 
   const defaultFormValues = {
@@ -29,10 +30,10 @@ const Login = () => {
     login(values)
       .then((res) => {
         if (res.data.success) {
-          setUser(res.data.data);
           toast.success("Giriş Başarılı");
           setTimeout(() => {
-            window.location.href = "/";
+            setUser(res.data.data);
+            navigate("/");
           }, 1500);
         }
       })

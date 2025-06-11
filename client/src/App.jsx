@@ -71,8 +71,14 @@ const App = () => {
         </Route>
 
         {/* Auth */}
-        <Route path="/kayit-ol" element={<Register />} />
-        <Route path="/giris-yap" element={<Login />} />
+        <Route
+          path="/kayit-ol"
+          element={user ? <Navigate to="/" /> : <Register />}
+        />
+        <Route
+          path="/giris-yap"
+          element={user ? <Navigate to="/" /> : <Login />}
+        />
 
         {!isLoading && (
           <>

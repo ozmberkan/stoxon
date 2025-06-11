@@ -30,6 +30,7 @@ import { toast } from "sonner";
 
 const Navbar = () => {
   const userClaims = useAuthStore((state) => state.userClaims);
+  const clearUser = useAuthStore((state) => state.clearUser);
 
   return (
     <div className="flex flex-col w-full ">
@@ -228,6 +229,7 @@ const Navbar = () => {
                             logout().then((res) => {
                               if (res.data.success) {
                                 toast.success("Çıkış başarılı");
+                                clearUser();
                                 window.location.reload();
                               }
                             });
