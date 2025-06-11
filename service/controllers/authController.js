@@ -1,10 +1,6 @@
-import {
-  loginService,
-  logoutService,
-  registerService,
-} from "../services/authService.js";
-import jwt from "jsonwebtoken";
 import bcryptjs from "bcryptjs";
+import jwt from "jsonwebtoken";
+import { loginService, registerService } from "../services/authService.js";
 
 export const loginController = async (req, res) => {
   try {
@@ -96,10 +92,7 @@ export const registerController = async (req, res) => {
 };
 
 export const logoutController = async (req, res) => {
-  const { id } = req.user;
-
   try {
-    await logoutService(id);
     res.clearCookie("token");
     res.status(200).json({ message: "Çıkış Başarılı", success: true });
   } catch (error) {

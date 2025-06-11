@@ -13,9 +13,3 @@ export const registerRepo = async (data) => {
     data,
   });
 };
-
-export const logoutRepo = async (id) => {
-  return await prisma.user.update({
-    where: { id },
-  });
-};
