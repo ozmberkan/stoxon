@@ -5,6 +5,27 @@ import Button from "~/components/UI/Button";
 import Seperator from "~/components/UI/Seperator";
 
 const Register = () => {
+  const defaultFormValues = {
+    fullName: "",
+    email: "",
+    password: "",
+    phone: "",
+  };
+
+  const [values, setValues] = useState({ ...defaultFormValues });
+
+  const handleChange = (e) => {
+    setValues((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(values);
+  };
+
   return (
     <div className="w-full  flex  justify-center mt-24 items-start min-h-svh">
       <div className="flex flex-col gap-3">
@@ -35,7 +56,7 @@ const Register = () => {
           </p>
         </div>
         <Seperator />
-        <form className="grid grid-cols-2 gap-5">
+        <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-5">
           <div className="flex flex-col relative">
             <label className="text-xs font-semibold flex items-center gap-1 text-neutral-500 absolute -top-2 left-2 bg-background px-1">
               <User2 size={12} /> İsim Soyisim
@@ -43,6 +64,7 @@ const Register = () => {
             <input
               name="fullName"
               type="text"
+              onChange={handleChange}
               className="py-2 px-3 rounded-lg border border-border focus:outline-none transition-all duration-200 text-sm"
             />
           </div>
@@ -53,6 +75,7 @@ const Register = () => {
             <input
               type="email"
               name="email"
+              onChange={handleChange}
               className="py-2 px-3 rounded-lg border border-border focus:outline-none transition-all duration-200 text-sm"
             />
           </div>
@@ -63,6 +86,7 @@ const Register = () => {
             <input
               name="phone"
               type="text"
+              onChange={handleChange}
               className="py-2 px-3 rounded-lg border border-border focus:outline-none transition-all duration-200 text-sm"
             />
           </div>
@@ -72,6 +96,7 @@ const Register = () => {
             </label>
             <input
               type="password"
+              onChange={handleChange}
               name="password"
               className="py-2 px-3 rounded-lg border border-border focus:outline-none transition-all duration-200 text-sm"
             />

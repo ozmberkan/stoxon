@@ -1,10 +1,29 @@
 import { Lock, Mail } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "~/components/UI/Button";
 import Seperator from "~/components/UI/Seperator";
 
 const Login = () => {
+  const defaultFormValues = {
+    email: "",
+    password: "",
+  };
+
+  const [values, setValues] = useState({ ...defaultFormValues });
+
+  const handleChange = (e) => {
+    setValues((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(values);
+  };
+
   return (
     <div className="w-full  flex  justify-center mt-24 items-start  min-h-svh">
       <div className="flex flex-col gap-3">
@@ -35,7 +54,7 @@ const Login = () => {
           </p>
         </div>
         <Seperator />
-        <form className="grid grid-cols-1 gap-5">
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-5">
           <div className="flex flex-col relative">
             <label className="text-xs font-semibold flex items-center gap-1 text-neutral-500 absolute -top-2 left-2 bg-background px-1">
               <Mail size={12} /> E-Posta
@@ -43,6 +62,7 @@ const Login = () => {
             <input
               type="email"
               name="email"
+              onChange={handleChange}
               className="py-2 px-3 rounded-lg border border-border focus:outline-none transition-all duration-200 text-sm"
             />
           </div>
@@ -52,6 +72,7 @@ const Login = () => {
               <Lock size={12} /> Parola
             </label>
             <input
+              onChange={handleChange}
               type="password"
               name="password"
               className="py-2 px-3 rounded-lg border border-border focus:outline-none transition-all duration-200 text-sm"
