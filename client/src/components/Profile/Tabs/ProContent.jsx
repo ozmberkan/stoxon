@@ -29,7 +29,6 @@ const ProContent = () => {
           <Button
             onClick={() => {
               assignClaimToUser(user.id, "pro").then((res) => {
-                window.location.href = "/";
                 logout();
               });
             }}

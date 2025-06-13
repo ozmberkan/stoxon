@@ -11,7 +11,6 @@ const Verify = () => {
     try {
       await api.post("/auth/verify-2fa", { token });
       alert("2FA başarıyla doğrulandı!");
-      window.location.href = "/";
     } catch (err) {
       setError("Kod geçersiz veya süresi dolmuş");
     }

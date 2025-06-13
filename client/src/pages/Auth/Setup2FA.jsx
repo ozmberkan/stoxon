@@ -37,9 +37,7 @@ const Setup2FA = () => {
       )}
       <button
         onClick={() => {
-          update(user.id, { QrCode: true }).then((res) => {
-            window.location.href = "/verify";
-          });
+          update(user.id, { QrCode: true }).then((res) => {});
         }}
         className="px-2 py-1 rounded-xl bg-primary text-white"
       >

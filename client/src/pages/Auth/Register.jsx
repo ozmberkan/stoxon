@@ -33,9 +33,6 @@ const Register = () => {
         if (res.data.success) {
           toast.success("Kayıt Başarılı");
           setUser(res.data.data);
-          setTimeout(() => {
-            window.location.href = "/";
-          }, 1500);
         }
       })
       .catch((errorResponse) => {
