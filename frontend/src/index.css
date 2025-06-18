@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme {
+  --font-inter : 'Inter', sans-serif;
+  --color-dark-bg: #393939;
+  --color-light-bg: #f5f5f5;
+  --color-dark-text: #ffffff;
+  --color-light-text: #202020;
+  --color-border-color: #e5e5e5;
+  --color-border-dark-color: #535353;
+}
+
+@layer base {
+  body {
+    @apply bg-white text-light-text font-inter;
+  }
+}
