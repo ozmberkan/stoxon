@@ -1,7 +1,7 @@
 import React from "react";
 
 const Register = () => {
-  return <div>Register</div>;
+  return <div className="container mx-auto">Register</div>;
 };
 
 export default Register;

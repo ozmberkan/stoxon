@@ -5,10 +5,11 @@ const Button = ({
   theme = "dark",
   size = "base",
   Icon = null,
+  className,
   clickHandle,
   children,
 }) => {
-  const baseClasses = "px-3 py-1.5 rounded-md";
+  const baseClasses = "px-3 py-1.5 rounded-lg";
   const themeClasses =
     theme === "light"
       ? "bg-light-bg text-light-text hover:bg-border-color/75 border border-border-color"
@@ -24,7 +25,7 @@ const Button = ({
     <button
       type={type}
       onClick={clickHandle}
-      className={`${baseClasses} ${themeClasses} ${sizeClasses} cursor-pointer transition-colors duration-300 shadow flex items-center gap-1.5`}
+      className={`${baseClasses} ${themeClasses} ${sizeClasses} ${className} cursor-pointer transition-colors duration-300 shadow flex items-center gap-1.5`}
     >
       {Icon && <Icon size={18} />}
       {children}
